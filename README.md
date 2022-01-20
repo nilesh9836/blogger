@@ -19,14 +19,14 @@ password:- 98765
 
 ```
 ### Instructions
-```
+
   - Login using above username and password
   - Create Post
   - Read Post
   
   Note:- User can read the post without login.
   
- ```
+ 
 ### Compiles and minifies for production
 ```
 npm run build
