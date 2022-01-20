@@ -1,19 +1,27 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+
+   <top-bar></top-bar>
+    <v-main class="pa-0 page-color pt-6">
+      <router-view/>
+    </v-main>
+</v-app>
 </template>
 
-<style lang="stylus">
-#app
-  font-family Avenir, Helvetica, Arial, sans-serif
-  -webkit-font-smoothing antialiased
-  -moz-osx-font-smoothing grayscale
-  text-align center
-  color #2c3e50
-  margin-top 60px
+<script>
+import TopBar from "@/components/TopBar.vue";
+export default {
+  name: 'App',
+  components: {
+	TopBar
+  },
+  data: () => ({
+    //
+  }),
+};
+</script>
+<style scoped>
+.page-color {
+	background: #7e820c;
+}
 </style>
