@@ -32,6 +32,15 @@ const actions = {
     },
 	storeBlog({ commit},{content}) {
 		commit('storeBlog',{content});
+	},
+	signup({commit},{username, password}) {
+		let result = loginService.signup(username, password);
+		if (result) {
+			commit('signUpSucess');
+			console.log("signup success");
+		} else {
+			commit('signUpFailure');
+		}
 	}
 };
 const mutations = {
@@ -55,6 +64,12 @@ const mutations = {
         state.user=null;
 		localStorage.setItem('isLogin',true);
     },
+	signUpSucess(state) {
+		state.isLogin = false;
+		state.token = null;
+		state.user = null;
+		localStorage.setItem('isLogin', false);
+	},
     loginFailure(state) {
         state.isLogin=false;
 		localStorage.setItem('isLogin',false);
@@ -89,5 +104,11 @@ export const storeBlog = {
     state,
     actions,
     mutations
+};
+export const signup = {
+	namespaced: true,
+	state,
+	actions,
+	mutations
 };
 

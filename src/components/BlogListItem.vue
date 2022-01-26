@@ -4,21 +4,21 @@
   <v-img
     class="white--text my-2"
     height="200px"
-    :src="article.content.photo"
+    :src="article.photo"
   >
     <v-container fill-height fluid>
       <v-layout fill-height>
         <v-flex xs12 align-end flexbox >
-          <h2 class="headline" style="text-shadow: 0px 2px 5px #222;">BY:-{{article.content.username}}</h2>
+          <h2 class="headline" style="text-shadow: 0px 2px 5px #222;">BY:-{{article.username}}</h2>
         </v-flex>
       </v-layout>
     </v-container>
   </v-img>
   <v-card-title>
     <div>
-      <p class="grey--text content" >{{article.content.title}}</p>
+      <p class="grey--text content" >{{article.title}}</p>
       <p class="content">
-        {{article.content.content}}
+        {{article.content}}
       </p>
     </div>
   </v-card-title>

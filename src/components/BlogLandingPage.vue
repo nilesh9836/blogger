@@ -1,5 +1,5 @@
 <template>
-	<v-container fluid class="container-class pa-0" >
+	<v-container fluid class="container-class pa-0" :key="compKey" >
 		<v-card width="100%" elevation="0" color="#7e820c" class="pa-6" >
 			<v-row class="pa-6">
 				<v-col class="pr-2 title">
@@ -10,7 +10,7 @@
                         It's easy and free to post your thinking on any topic and connect with millions of readers.
 					</div>
 					<v-row class="py-4" no-gutters>
-			<v-btn
+			<!-- <v-btn
       rounded
       color="white"
       dark
@@ -18,7 +18,7 @@
 	@click="redirectToLoginPage()"
     >
       Start Writing
-    </v-btn>
+    </v-btn> -->
 					</v-row>
 				</v-col>
 			</v-row>
@@ -36,6 +36,7 @@
 <script>
 import Login from "@/components/Login.vue";
 import PostListItem from '@/components/BlogListItem.vue'
+import { getDatabase, ref,get,child} from "firebase/database"
 import CreatePostDialog from "@/components/CreatePostDialog.vue";
 export default {
   name: "BlogLandingPage",
@@ -50,13 +51,35 @@ export default {
 		loginDialog: false,
         loginDialogKey: 0,
 		createPostDialog: false,
-		addBlogKey: 0
+		addBlogKey: 0,
+		content: [],
+		compKey: 0,
     };
   },
   methods: {
+	getData() {
+		const dbRef = ref(getDatabase());
+get(child(dbRef, `blogs/`)).then((snapshot) => {
+	let arr = [];
+  snapshot.forEach((item) =>{
+
+	arr.push(item.val());
+
+    console.log(item.val());
+});
+this.content = arr;
+}).catch((error) => {
+  console.error(error);
+});
+	},
+
 	close() {
-     this.createPostDialog = false;
+    this.createPostDialog = false;
 	this.loginDialog = false;
+	this.$nextTick(() =>{
+     this.compKey++;
+	})
+	//this.$router.push({ path: 'login' , query: { }})
 	},
 	redirectToLoginPage() {
 		if(!localStorage.isLogin) {
@@ -77,14 +100,27 @@ export default {
 	}
   },
   computed: {
-	content() {
-		let contents = this.$store.state.storeBlog.content;
-		if(localStorage.content) {
-           contents =JSON.parse(localStorage.content)
-		}
-		return contents;
-	}
-  }
+	// content() {
+	// 	let contents = this.$store.state.storeBlog.content;
+	// 	if(localStorage.content) {
+    //        contents =JSON.parse(localStorage.content)
+	// 	}
+	// 	return contents;
+	// }
+  },
+  mounted() {
+    this.getData();
+  },
+  watch: {
+     '$route.query': {
+        handler: function() {
+           this.getData();
+		this.$router.push({ path: 'login', query: {}});
+        },
+        deep: true,
+        immediate: true
+      }
+}
 }
 </script>
 <style scoped>

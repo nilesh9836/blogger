@@ -52,6 +52,7 @@
 
 <script>
 import {  mapActions } from 'vuex'
+import { getDatabase, ref, set ,push} from "firebase/database"
 export default {
   name: "CreatePostDialog",
   data() {
@@ -80,6 +81,18 @@ export default {
 	}
   },
   methods: {
+writeUserData(content) {
+	//const userId = getAuth().currentUser.uid;
+	const db = getDatabase();
+const postListRef = ref(db, 'blogs');
+const newPostRef = push(postListRef);
+set(newPostRef, {
+    username: content.username,
+	title: content.title,
+	content: content.content,
+	photo: content.photo
+});
+},
 	...mapActions('storeBlog', {
                 storeBlog: 'storeBlog'
             }),
@@ -91,9 +104,11 @@ export default {
 		photo: ""
 	};
 	content.photo =`https://source.unsplash.com/430x500/?laptop,desk,random=${Math.random()}`;
-    this.storeBlog({content});
-	this.createPostDialog = false;
+	this.writeUserData(content);
+	this.$nextTick(() =>{
 	this.$emit('close',true);
+	})
+	this.createPostDialog = false;
 	}
   },
   mounted() {
