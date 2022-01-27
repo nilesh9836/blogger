@@ -64,8 +64,6 @@ get(child(dbRef, `blogs/`)).then((snapshot) => {
   snapshot.forEach((item) =>{
 
 	arr.push(item.val());
-
-    console.log(item.val());
 });
 this.content = arr;
 }).catch((error) => {

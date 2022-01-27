@@ -100,7 +100,6 @@ get(child(dbRef, `users/`)).then((snapshot) => {
 
 	arr.push(item.val());
 
-    console.log(item.val());
 });
 return arr;
 }).catch((error) => {

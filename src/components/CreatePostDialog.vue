@@ -103,7 +103,8 @@ set(newPostRef, {
 		content: this.content,
 		photo: ""
 	};
-	content.photo =`https://source.unsplash.com/random?sig=${parseInt(Math.random()*10)},laptop,desk`;
+	let titleStr = this.title.split(' ').join(',');
+	content.photo =`https://source.unsplash.com/random?${titleStr},sig=${parseInt(Math.random()*10000)},`;
 	this.writeUserData(content);
 	this.$nextTick(() =>{
 	this.$emit('close',true);
