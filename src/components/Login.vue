@@ -82,7 +82,7 @@ export default {
 	}
   },
   methods: {
-writeUserData(username, name,password) {
+writeUserData(username, name) {
 	//const userId = getAuth().currentUser.uid;
 	const db = getDatabase();
 const postListRef = ref(db, 'users');
@@ -90,7 +90,6 @@ const newPostRef = push(postListRef);
 set(newPostRef, {
     email: username,
 	name: name,
-	password: password
 });
 },
 readUserData() {
@@ -154,7 +153,7 @@ get(child(dbRef, `users/`)).then((snapshot) => {
       .createUserWithEmailAndPassword(username, password)
       .then(() => {
 
-      this.writeUserData(username,this.name,password);
+      this.writeUserData(username,this.name);
         this.error = '';
 		this.type = 'login';
 		this.$emit('login',true);
