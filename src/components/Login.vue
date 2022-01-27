@@ -160,7 +160,6 @@ get(child(dbRef, `users/`)).then((snapshot) => {
       })
       .catch((error) => {
 		this.error = error.message;
-         alert(error.message);
       });
 					}
 
