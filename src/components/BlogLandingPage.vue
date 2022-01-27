@@ -1,6 +1,6 @@
 <template>
 	<v-container fluid class="container-class pa-0" :key="compKey" >
-		<v-card width="100%" elevation="0" color="#7e820c" class="pa-6" >
+		<v-card width="100%" elevation="0" style="background-image: linear-gradient(90deg,#00BC40 ,#4C3AE3)" class="pa-6" >
 			<v-row class="pa-6">
 				<v-col class="pr-2 title">
 					<div class="content-title pt-6">
@@ -128,10 +128,12 @@ this.content = arr;
 .content-title {
 	font-size: 5.5rem;
 	line-height: 6rem;
+	color:white;
 
 }
 .content-subtitle {
 	font-size: 2rem;
 	line-height: 2rem;
+	color: whitesmoke;
 }
 </style>

@@ -22,6 +22,6 @@ export default {
 </script>
 <style scoped>
 .page-color {
-	background: #7e820c;
+	background-image: linear-gradient(90deg,#00BC40 ,#4C3AE3);
 }
 </style>
