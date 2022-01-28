@@ -126,14 +126,14 @@ this.content = arr;
 	height: 100%;
 }
 .content-title {
-	font-size: 5.5rem;
-	line-height: 6rem;
+	font-size: 7vw;
+	line-height: 7vw;
 	color:white;
 
 }
 .content-subtitle {
-	font-size: 2rem;
-	line-height: 2rem;
+	font-size: 4vw;
+	line-height: 4vw;
 	color: whitesmoke;
 }
 </style>

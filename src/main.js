@@ -3,6 +3,7 @@ import App from './App.vue'
 import {router } from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
+import FlashMessage from '@smartweb/vue-flash-message';
 // Import the functions you need from the SDKs you need
 //import { initializeApp } from "firebase/compat/app";
 //import { getAnalytics } from "firebase/compat/analytics";
@@ -28,7 +29,13 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 //const analytics = firebase.getAnalytics(app)
+const config = {
+	name: 'flashMessage',
+	tag: 'FlashMessage',
+	time: 8000
+};
 
+Vue.use(FlashMessage, config);
 Vue.config.productionTip = false
 
 new Vue({

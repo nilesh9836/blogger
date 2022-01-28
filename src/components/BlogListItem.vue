@@ -67,6 +67,6 @@ export default {
 	white-space: nowrap;
 overflow: hidden;
 text-overflow: ellipsis;
-width: 300px;
+width: 211px;
 }
 </style>

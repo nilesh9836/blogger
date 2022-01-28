@@ -10,10 +10,10 @@
 		</v-row>
         </v-card-title>
                      <v-card-text>
-						<div v-if="error !== ''" class="error-text">{{error}}</div>
+						<div v-if="error !== ''" class="error-text">{{error.substr(9)}}</div>
                         <v-form>
 							<v-text-field
-							v-if="type === 'signUp'"
+							v-if="type === 'signUp' && !isForgetPassword"
                               prepend-icon="mdi-account"
                               name="name"
                               label="Name"
@@ -30,6 +30,7 @@
 							clearable
                            ></v-text-field>
                            <v-text-field
+					v-if="!isForgetPassword"
                               id="password"
                               prepend-icon="mdi-lock"
                               name="password"
@@ -42,14 +43,23 @@
                      </v-card-text>
                      <v-card-actions class="text-h5 grey lighten-2 border-top">
                         <v-spacer></v-spacer>
+						<v-btn v-if="type === 'login'" text color="primary" @click="forgetPassword()">forget password</v-btn>
                         <v-btn
+						v-if="!isForgetPassword"
 						color="primary"
 						@click="doLogin()"
 						:disabled="!canLogin"
 						:loading="loader">{{(type !== 'signUp')?'LogIn':'SignUp'}}</v-btn>
+						<v-btn
+						v-else
+						color="primary"
+						@click="sendEmail()"
+						:disabled="!canReset"
+						:loading="emailSending">reset</v-btn>
                      </v-card-actions>
                   </v-card>
 	</v-container>
+	<FlashMessage></FlashMessage>
 </v-dialog>
 </template>
 <script>
@@ -59,7 +69,6 @@ import {  mapActions } from 'vuex'
 export default {
   name: "LoginPage",
   components: {
-
   },
   data() {
     return {
@@ -68,7 +77,10 @@ export default {
 		password: "",
 		username: "",
 		name: '',
-		error: ''
+		error: '',
+		isForgetPassword: false,
+		emailSending: false,
+		successMessage: ''
     };
   },
   props: {
@@ -82,6 +94,27 @@ export default {
 	}
   },
   methods: {
+sendEmail() {
+  this.error = '';
+  this.emailSending = true;
+  firebase
+    .auth()
+    .sendPasswordResetEmail(this.username)
+    .then(() => {
+      this.emailSending = false;
+	this.flashMessage.info({title: '', message: 'Password reset link sent successfully'});
+	this.successMessage = "Check your Email and reset password";
+	this.isForgetPassword = false;
+	//this.$emit('login',true);
+    })
+    .catch(error => {
+      this.emailSending = false;
+      this.error = error.message;
+    });
+},
+	forgetPassword() {
+     this.isForgetPassword = true;
+	},
 writeUserData(username, name) {
 	//const userId = getAuth().currentUser.uid;
 	const db = getDatabase();
@@ -103,7 +136,6 @@ get(child(dbRef, `users/`)).then((snapshot) => {
 });
 return arr;
 }).catch((error) => {
-  console.error(error);
   return error;
 });
 }
@@ -115,14 +147,14 @@ return arr;
                 this.$refs.form.reset();
             },
             doLogin() {
+				this.loader = true;
                 const { username, password } = this;
                 if(this.username != "" && this.password != "") {
 					if(this.type === 'login') {
 		firebase
         .auth()
         .signInWithEmailAndPassword(username, password)
-        .then(data => {
-          console.log(data)
+        .then(() => {
 		this.error = '';
 		this.isLoggedIn=true;
 		localStorage.setItem('isLogin',true);
@@ -132,18 +164,19 @@ get(child(dbRef, `users/`)).then((snapshot) => {
   snapshot.forEach((item) =>{
     if(item.val().email === username) {
 	this.$emit('close',{close:true,userInfo:item.val()});
+	this.loader = false;
 	return;
 	}
 
-    console.log(item.val());
 });
-}).catch((error) => {
-  console.error(error);
+}).catch(() => {
+  this.loader = false;
 });
 
         })
         .catch(err => {
           this.error = err.message;
+		this.loader = false;
         });
 					}
 				else if(this.type === 'signUp') {
@@ -151,7 +184,8 @@ get(child(dbRef, `users/`)).then((snapshot) => {
       .auth()
       .createUserWithEmailAndPassword(username, password)
       .then(() => {
-
+      this.loader = false;
+	this.flashMessage.info({title: '', message: 'User created successfully'});
       this.writeUserData(username,this.name);
         this.error = '';
 		this.type = 'login';
@@ -159,6 +193,7 @@ get(child(dbRef, `users/`)).then((snapshot) => {
       })
       .catch((error) => {
 		this.error = error.message;
+		this.loader = false;
       });
 					}
 
@@ -175,6 +210,9 @@ get(child(dbRef, `users/`)).then((snapshot) => {
 	canLogin() {
 		return (this.username !== ""  && this.username !== null)
 		&& (this.password !== "" && this.password !== null);
+	},
+	canReset() {
+		return (this.username !== ""  && this.username !== null)
 	}
   },
   watch: {
@@ -198,5 +236,10 @@ get(child(dbRef, `users/`)).then((snapshot) => {
 	display: flex;
 	justify-content: center;
 	color: red;
+}
+.success-message {
+	display: flex;
+	justify-content: center;
+	color: primary;
 }
 </style>
