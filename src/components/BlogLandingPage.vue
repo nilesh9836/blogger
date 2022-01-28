@@ -1,25 +1,14 @@
 <template>
 	<v-container fluid class="container-class pa-0" :key="compKey" >
-		<v-card width="100%" elevation="0" style="background-image: linear-gradient(90deg,#00BC40 ,#4C3AE3)" class="pa-6" >
-			<v-row class="pa-6">
+		<v-card width="100%" elevation="0" style="background-image: linear-gradient(90deg,#00BC40 ,#4C3AE3)" class="px-6 pt-2" >
+			<v-row class="px-4 py-0">
 				<v-col class="pr-2 title">
-					<div class="content-title pt-6">
-						Blogger is a place to write, read, and connect
+					<div class="content-title pt-3">
+						Blogger is a place to write, read, and connect.
 					</div>
-					<div class="content-subtitle">
+					<div class="content-subtitle pt-3">
                         It's easy and free to post your thinking on any topic and connect with millions of readers.
 					</div>
-					<v-row class="py-4" no-gutters>
-			<!-- <v-btn
-      rounded
-      color="white"
-      dark
-	outlined
-	@click="redirectToLoginPage()"
-    >
-      Start Writing
-    </v-btn> -->
-					</v-row>
 				</v-col>
 			</v-row>
             <v-row no-gutters>
@@ -126,14 +115,15 @@ this.content = arr;
 	height: 100%;
 }
 .content-title {
-	font-size: 7vw;
-	line-height: 7vw;
+	font-size: 6vw;
+	line-height: 6vw;
 	color:white;
-
+   font-family: math;
 }
 .content-subtitle {
 	font-size: 4vw;
 	line-height: 4vw;
 	color: whitesmoke;
+    font-family: math;
 }
 </style>

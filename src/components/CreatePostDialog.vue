@@ -90,7 +90,8 @@ set(newPostRef, {
     username: content.username,
 	title: content.title,
 	content: content.content,
-	photo: content.photo
+	photo: content.photo,
+	timestamp: content.timestamp,
 });
 },
 	...mapActions('storeBlog', {
@@ -105,6 +106,9 @@ set(newPostRef, {
 	};
 	let titleStr = this.title.split(' ').join(',');
 	content.photo =`https://source.unsplash.com/random?${titleStr},sig=${parseInt(Math.random()*10000)},`;
+	let date = new Date();
+    let timestamp = Math.floor(date.getTime()/1000.0);
+	content.timestamp = timestamp;
 	this.writeUserData(content);
 	this.$nextTick(() =>{
 	this.$emit('close',true);

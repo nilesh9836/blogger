@@ -11,6 +11,10 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import "firebase/firestore";
+// import plugin
+import { TiptapVuetifyPlugin } from 'tiptap-vuetify'
+// don't forget to import CSS styles
+import 'tiptap-vuetify/dist/main.css'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -34,7 +38,12 @@ const config = {
 	tag: 'FlashMessage',
 	time: 8000
 };
-
+Vue.use(TiptapVuetifyPlugin, {
+  // the next line is important! You need to provide the Vuetify Object to this place.
+  vuetify, // same as "vuetify: vuetify"
+  // optional, default to 'md' (default vuetify icons before v2.0.0)
+  iconsGroup: 'md'
+})
 Vue.use(FlashMessage, config);
 Vue.config.productionTip = false
 

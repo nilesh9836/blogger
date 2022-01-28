@@ -2,6 +2,7 @@
   <v-app>
 
    <top-bar></top-bar>
+   <Editor/>
     <v-main class="pa-0 page-color pt-6">
       <router-view/>
     </v-main>
@@ -10,10 +11,11 @@
 
 <script>
 import TopBar from "@/components/TopBar.vue";
+import Editor from "@/components/TopBar.vue";
 export default {
   name: 'App',
   components: {
-	TopBar
+	TopBar,Editor
   },
   data: () => ({
     //
