@@ -62,7 +62,7 @@ export default {
 	},
 	timeDifference(previous) {
 
-    var msPerMinute = 60 * 1000;
+    var msPerMinute = 60 * 1;
     var msPerHour = msPerMinute * 60;
     var msPerDay = msPerHour * 24;
     var msPerMonth = msPerDay * 30;
