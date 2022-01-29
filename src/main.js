@@ -15,6 +15,9 @@ import "firebase/firestore";
 import { TiptapVuetifyPlugin } from 'tiptap-vuetify'
 // don't forget to import CSS styles
 import 'tiptap-vuetify/dist/main.css'
+import wysiwyg from "vue-wysiwyg";
+import "vue-wysiwyg/dist/vueWysiwyg.css";
+Vue.use(wysiwyg, {});
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 

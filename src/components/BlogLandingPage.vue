@@ -12,8 +12,21 @@
 				</v-col>
 			</v-row>
             <v-row no-gutters>
-				<v-flex xs12 sm12 lg4  v-for="(post,i ) in content" :key="i" class="pt-8 px-4">
+				<v-flex v-show="content.length>0" xs12 sm12 lg4  v-for="(post,i ) in content" :key="i" class="pt-8 px-4">
         <PostListItem :article="post"></PostListItem>
+      </v-flex>
+	<v-flex v-show="content.length === 0" xs12 sm12 lg4  v-for="i in 3" :key="i" class="pt-8 px-4 pr-10">
+        <v-sheet
+    :color="'darken-2'"
+    class="pa-3"
+	style="border-radius: 10px"
+  >
+    <v-skeleton-loader
+      class="mx-auto"
+	height="350"
+      type="card, list-item-three-line"
+    ></v-skeleton-loader>
+  </v-sheet>
       </v-flex>
 			</v-row>
 		</v-card>
