@@ -61,7 +61,7 @@ export default {
 	this.$refs.blogReader.readerDialog = true;
 	},
 	timeDifference(previous) {
-
+    if(previous === '') return Math.floor(Math.random()*10) +' days ago';
     var msPerMinute = 60 * 1;
     var msPerHour = msPerMinute * 60;
     var msPerDay = msPerHour * 24;
