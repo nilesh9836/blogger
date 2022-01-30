@@ -9,15 +9,7 @@ npm install
 ```
 npm run serve
 ```
-### Default User/Password
-```
-user:- nilesh
-password:-123456
 
-user:-sandeep
-password:- 98765
-
-```
 ### Instructions
 
   - Login using above username and password
