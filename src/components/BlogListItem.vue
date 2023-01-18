@@ -61,7 +61,7 @@ export default {
 	this.$refs.blogReader.readerDialog = true;
 	},
 	timeDifference(previous) {
-
+    if(previous.length === 0) return "";
     var msPerMinute = 60 * 1;
     var msPerHour = msPerMinute * 60;
     var msPerDay = msPerHour * 24;
@@ -70,7 +70,7 @@ export default {
     let date = new Date();
     let timestamp = Math.floor(date.getTime()/1000.0);
     var elapsed = timestamp - previous;
-
+    console.log(elapsed);
     if (elapsed < msPerMinute) {
          return Math.round(elapsed/1000) + ' seconds ago';
     }
