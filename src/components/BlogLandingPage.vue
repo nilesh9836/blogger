@@ -22,9 +22,8 @@
 	style="border-radius: 10px"
   >
     <v-skeleton-loader
-      class="mx-auto"
+      class="mx-auto card-width"
 			height="350"
-			width="400"
       type="card, list-item-three-line"
     ></v-skeleton-loader>
   </v-sheet>
@@ -139,5 +138,15 @@ this.content = arr;
 	line-height: 4vw;
 	color: whitesmoke;
     font-family: math;
+}
+@media only screen and (max-width: 600px) {
+  .card-width {
+    width: 320px;
+  }
+}
+@media only screen and (min-width: 768px) {
+	.card-width {
+    width: 420px;
+  }
 }
 </style>

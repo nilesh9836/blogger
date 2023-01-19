@@ -1,6 +1,6 @@
 <template lang="html">
 <div>
-<v-card hover  outlined class="px-4" style="border-radius: 10px;" width="400">
+<v-card hover  outlined class="px-4 card-width" style="border-radius: 10px;" >
   <v-img
     class="white--text my-4"
     height="200px"
@@ -25,7 +25,7 @@
   </v-card-actions>
 
 </v-card>
-<BlogReader ref="blogReader" :data="article" ></BlogReader>
+<BlogReader ref="blogReader" :data="article" :key="compKey" ></BlogReader>
 </div>
 </template>
 
@@ -35,6 +35,11 @@ export default {
 	name: "BlogCard",
 	components: {
       BlogReader
+	},
+	data() {
+		return{
+			compKey: 0
+		}
 	},
   props: {
     article: {
@@ -55,18 +60,18 @@ export default {
   methods: {
 	readData() {
      this.$refs.blogReader.compKey++;
-	this.$refs.blogReader.readerDialog = true;
+	this.$refs.blogReader.dialog = true;
 	},
 	timeDifference(previous) {
     if(previous.length === 0) return "";
-    var msPerMinute = 60 * 1;
-    var msPerHour = msPerMinute * 60;
-    var msPerDay = msPerHour * 24;
-    var msPerMonth = msPerDay * 30;
-    var msPerYear = msPerDay * 365;
+    let msPerMinute = 60 * 1;
+    let msPerHour = msPerMinute * 60;
+    let msPerDay = msPerHour * 24;
+    let msPerMonth = msPerDay * 30;
+    let msPerYear = msPerDay * 365;
     let date = new Date();
     let timestamp = Math.floor(date.getTime()/1000.0);
-    var elapsed = timestamp - previous;
+    let elapsed = timestamp - previous;
     if (elapsed < msPerMinute) {
          return Math.round(elapsed/1000) + ' seconds ago';
     }
@@ -107,5 +112,15 @@ width: 211px;
 .updated {
 	color: #86878a;
     font-weight: 500;
+}
+@media only screen and (max-width: 600px) {
+  .card-width {
+    width: 320px;
+  }
+}
+@media only screen and (min-width: 768px) {
+	.card-width {
+    width: 420px;
+  }
 }
 </style>
