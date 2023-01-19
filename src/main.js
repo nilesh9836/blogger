@@ -4,6 +4,7 @@ import {router } from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
 import FlashMessage from '@smartweb/vue-flash-message';
+import "./index.css";
 // Import the functions you need from the SDKs you need
 //import { initializeApp } from "firebase/compat/app";
 //import { getAnalytics } from "firebase/compat/analytics";

@@ -1,22 +1,26 @@
 <template>
-   <v-dialog v-model="readerDialog" max-width="900" :key="compKey">
-	<v-container class="pa-0">
-				<v-card>
-        <v-card-title>
-          <span class="text-h5">{{data.title}}</span>
+   <v-dialog v-model="dialog"  :key="compKey" fullscreen
+        hide-overlay
+        transition="dialog-bottom-transition"
+        scrollable>
+				<v-card tile>
+        <v-card-title class="title">
+          <span class="text-h6">{{data.title}}</span>
 		<v-spacer></v-spacer>
-		<v-btn icon @click="readerDialog = false"><v-icon>mdi-close</v-icon></v-btn>
+		<v-btn icon @click="dialog = false" color="white"><v-icon>mdi-close</v-icon></v-btn>
         </v-card-title>
         <v-card-text>
-          {{data.content}}
+          <div class="output ql-snow">
+      <!-- <h1>Output</h1> -->
+      <div class="ql-editor" v-html="data.content"></div>
+    </div>
         </v-card-text>
-        <v-card-actions>
+        <v-card-actions class="bottom">
           <v-spacer></v-spacer>
-		<v-btn color="grey darken-1"
-            text  @click="readerDialog = false">Cancel</v-btn>
+		<v-btn color="black darken-1"
+            text  @click="dialog = false">Cancel</v-btn>
         </v-card-actions>
       </v-card>
-	</v-container>
 </v-dialog>
 </template>
 <script>
@@ -28,6 +32,7 @@ export default {
   data() {
     return {
       compKey: 0,
+			dialog: false
     };
   },
   props: {
@@ -42,12 +47,23 @@ export default {
   },
   computed: {
   },
+	watch:{
+		readerDialog:{
+			handler(n){
+				this.dialog = n;
+			}
+		}
+	}
 
 }
 </script>
 <style scoped>
-.content{
-	font-size: 1rem;
-	color:black;
+.title {
+	color: white;
+    background: #6d6e67;
+}
+.bottom {
+	color: white;
+    background: linen;
 }
 </style>

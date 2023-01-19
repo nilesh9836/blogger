@@ -17,9 +17,6 @@
   <v-card-title class="px-0 py-0">
     <div>
       <p class="grey--text content" >{{article.title}}</p>
-      <p class="content">
-        {{article.content}}
-      </p>
     </div>
   </v-card-title>
   <v-card-actions class="pb-3 px-0">
@@ -70,7 +67,6 @@ export default {
     let date = new Date();
     let timestamp = Math.floor(date.getTime()/1000.0);
     var elapsed = timestamp - previous;
-    console.log(elapsed);
     if (elapsed < msPerMinute) {
          return Math.round(elapsed/1000) + ' seconds ago';
     }

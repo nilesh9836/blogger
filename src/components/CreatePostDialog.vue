@@ -1,9 +1,10 @@
 <template>
 
-    <v-dialog v-model="createPostDialog" width="500">
-		<v-container class="pa-0">
+    <v-dialog v-model="createPostDialog" fullscreen
+        hide-overlay
+        transition="dialog-bottom-transition">
 		<v-form>
-			<v-card>
+			<v-card tile>
 				<v-card-title class="text-h5 grey lighten-2">
           <v-row>
 			<v-col>New Post</v-col>
@@ -31,14 +32,10 @@
 					</v-col>
 				</v-row>
 				<v-row class="pa-0 px-4" no-gutters>
-					<v-textarea
-          label="Content"
-		v-model="content"
-		required
-        ></v-textarea>
+					<tiptap @change="onValueChange" />
 				</v-row>
 		</v-card-text>
-		<v-card-actions class="text-h5 grey lighten-2">
+		<v-card-actions class="text-h5 grey lighten-2 pt-2">
 			<v-row no-gutters>
 				<v-spacer></v-spacer>
 				<v-btn color="primary" @click="addPost()" :disabled="!canAdd">Add</v-btn>
@@ -46,13 +43,13 @@
 		</v-card-actions>
 			</v-card>
 		</v-form>
-  </v-container>
 	</v-dialog>
 </template>
 
 <script>
 import {  mapActions } from 'vuex'
 import { getDatabase, ref, set ,push} from "firebase/database"
+import Tiptap from "./Tiptap";
 export default {
   name: "CreatePostDialog",
   data() {
@@ -65,12 +62,13 @@ export default {
     };
   },
   props: {
-     createPostDialog: {
+  createPostDialog: {
 		type: Boolean,
 		default: false
 	}
   },
   components: {
+		Tiptap
   },
   computed : {
 	isLoggedIn() {
@@ -81,6 +79,10 @@ export default {
 	}
   },
   methods: {
+	onValueChange(val) {
+		console.log(val);
+		this.content = val;
+	},
 writeUserData(content) {
 	//const userId = getAuth().currentUser.uid;
 	const db = getDatabase();

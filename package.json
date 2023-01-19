@@ -21,7 +21,16 @@
     "vue-router": "^3.5.3",
     "vue-wysiwyg": "^1.7.2",
     "vuetify": "^2.4.0",
-    "vuex": "^3.6.2"
+    "vuex": "^3.6.2",
+    "@tiptap/starter-kit": "2.0.0-beta.164",
+    "@tiptap/vue-2": "2.0.0-beta.73",
+    "@tiptap/vue-3": "2.0.0-beta.85",
+    "@vue/cli-plugin-babel": "4.1.1",
+    "debounce": "1.2.1",
+    "dedent": "0.7.0",
+    "highlight.js": "11.3.1",
+    "lodash": "4.17.21",
+    "vue-quill-editor": "3.0.6"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

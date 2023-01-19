@@ -23,7 +23,8 @@
   >
     <v-skeleton-loader
       class="mx-auto"
-	height="350"
+			height="350"
+			width="400"
       type="card, list-item-three-line"
     ></v-skeleton-loader>
   </v-sheet>
@@ -32,7 +33,7 @@
 		</v-card>
 		<login :loginDialog="loginDialog" :key="loginDialogKey" @close="close">
 		</login>
-		<create-post-dialog :create-post-dialog="createPostDialog" :key="addBlogKey" @close="close"></create-post-dialog>
+		<create-post-dialog :create-post-dialog="createPostDialog" :key="`blog${addBlogKey}`" @close="close"></create-post-dialog>
 	</v-container>
 </template>
 <script>
