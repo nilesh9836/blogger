@@ -1,5 +1,5 @@
 <template>
-  <div class="example">
+  <div class="example card-width">
     <quill-editor
       class="editor"
       ref="myTextEditor"
@@ -96,7 +96,7 @@ export default {
   display: flex;
   flex-direction: column;
   .editor {
-    height: 36rem;
+    height: 80vh;
     overflow: auto;
   }
   .output {
@@ -114,6 +114,16 @@ export default {
       border-top: none;
       height: 24rem;
     }
+  }
+}
+@media only screen and (max-width: 600px) {
+  .card-width {
+    height: 76vh;
+  }
+}
+@media only screen and (min-width: 768px) {
+	.card-width {
+    height: 75vh;
   }
 }
 </style>

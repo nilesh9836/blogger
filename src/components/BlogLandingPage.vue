@@ -1,5 +1,5 @@
 <template>
-	<v-container fluid class="container-class pa-0" :key="compKey" >
+	<v-container fluid class="container-class pa-0 ma-0" :key="compKey" >
 		<v-card width="100%" elevation="0" style="background-image: linear-gradient(90deg,#00BC40 ,#4C3AE3)" class="px-6 pt-2" >
 			<v-row class="px-4 py-0">
 				<v-col class="pr-2 title">
