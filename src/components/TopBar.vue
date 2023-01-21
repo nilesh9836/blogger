@@ -61,10 +61,10 @@
           </v-list-item-content>
         </v-card>
       </v-menu>
-	<v-btn  v-if="!isLoggedIn" @click="signUp('login')" outlined rounded>
+	<v-btn  v-if="!isLoggedIn" @click="signUp('login')" outlined rounded title="Logged in to create post">
     Log In
 	</v-btn>
-	<v-btn  class="ml-3" v-if="!isLoggedIn" @click="signUp('signUp')" outlined rounded>
+	<v-btn  class="ml-3" v-if="!isLoggedIn" @click="signUp('signUp')" outlined rounded title="Signned up to create post">
     Sign Up
 	</v-btn>
     </v-app-bar>

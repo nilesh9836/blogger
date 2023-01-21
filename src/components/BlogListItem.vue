@@ -1,6 +1,6 @@
 <template lang="html">
 <div>
-<v-card hover  outlined class="px-4 card-width" style="border-radius: 10px;" >
+<v-card hover  outlined class="px-4 card-width" style="border-radius: 10px;" @click="readData()" >
   <v-img
     class="white--text my-4"
     height="200px"
@@ -21,7 +21,7 @@
   </v-card-title>
   <v-card-actions class="pb-3 px-0">
     <v-row no-gutters><span class="updated">{{timeDifference(article.timestamp?article.timestamp: '')}}</span><v-spacer/>
-	<v-btn color="success"  outlined dark @click="readData()" rounded :height="30">read</v-btn></v-row>
+	<v-btn color="success"  outlined dark @click="readData()" rounded :height="30" title="Read the post">read</v-btn></v-row>
   </v-card-actions>
 
 </v-card>
