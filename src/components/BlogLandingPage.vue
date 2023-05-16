@@ -99,15 +99,6 @@ this.content = arr;
 	}
 	}
   },
-  computed: {
-	// content() {
-	// 	let contents = this.$store.state.storeBlog.content;
-	// 	if(localStorage.content) {
-    //        contents =JSON.parse(localStorage.content)
-	// 	}
-	// 	return contents;
-	// }
-  },
   mounted() {
     this.getData();
   },
