@@ -43,15 +43,17 @@ export default {
       default: false
     }
   },
-  watch: {
-    // Watcher for readerDialog prop to sync its value with dialog data property
-    readerDialog: {
-      handler(newValue) {
-        this.dialog = newValue;
-      },
-      immediate: true
-    }
-  }
+  computed: {
+  },
+	watch:{
+	//watch on reader blog
+		readerDialog:{
+			handler(n){
+				this.dialog = n;
+			}
+		}
+	}
+
 }
 </script>
 
