@@ -140,7 +140,7 @@ export default {
     },
   },
   created() {
-    this.user = JSON.parse(localStorage.user);
+    if(localStorage.user) this.user = JSON.parse(localStorage.user);
     this.isLoggedIn = this.$store.state.login.isLogin || localStorage.getItem('isLogin');
   }
 }
