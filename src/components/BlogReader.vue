@@ -48,6 +48,7 @@ export default {
   computed: {
   },
 	watch:{
+	//watch on reader blog
 		readerDialog:{
 			handler(n){
 				this.dialog = n;
