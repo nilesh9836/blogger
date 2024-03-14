@@ -1,40 +1,39 @@
 <template>
+  <!-- The main div that contains the Quill editor -->
   <div class="example card-width">
+    <!-- The Quill editor component -->
     <quill-editor
       class="editor"
       ref="myTextEditor"
       :value="content"
       :options="editorOption"
       @change="onEditorChange"
-      @blur="onEditorBlur($event)"
-      @focus="onEditorFocus($event)"
-      @ready="onEditorReady($event)"
+      @blur="onEditorBlur"
+      @focus="onEditorFocus"
+      @ready="onEditorReady"
     />
-    <!-- <div class="output code">
-      <code class="hljs" v-html="contentCode"></code>
-    </div> -->
-
   </div>
 </template>
 
 <script>
+// Importing necessary modules
 import dedent from "dedent";
 import hljs from "highlight.js";
 import debounce from "debounce";
 import { quillEditor } from "vue-quill-editor";
-// highlight.js style
-// import "highlight.js/styles/tomorrow.css";
-// import theme style
+
+// Importing Quill's core and theme styles
 import "quill/dist/quill.core.css";
 import "quill/dist/quill.snow.css";
+
 export default {
   name: "quill-example-snow",
-  title: "Theme: snow",
   components: {
     quillEditor,
   },
   data() {
     return {
+      // Options for the Quill editor
       editorOption: {
         modules: {
           toolbar: [
@@ -58,33 +57,41 @@ export default {
           },
         },
       },
+      // The content of the editor
       content: dedent``,
     };
   },
   methods: {
+    // Method to handle changes in the editor
     onEditorChange: debounce(function (value) {
       this.content = value.html;
-			this.$emit('change',this.content);
+      this.$emit('change',this.content);
     }, 466),
+    // Method to handle blur event in the editor
     onEditorBlur(editor) {
       console.log("editor blur!", editor);
     },
+    // Method to handle focus event in the editor
     onEditorFocus(editor) {
       console.log("editor focus!", editor);
     },
+    // Method to handle ready event in the editor
     onEditorReady(editor) {
       console.log("editor ready!", editor);
     },
   },
   computed: {
+    // Computed property to get the Quill editor instance
     editor() {
       return this.$refs.myTextEditor.quill;
     },
+    // Computed property to get the highlighted content
     contentCode() {
       return hljs.highlightAuto(this.content).value;
     },
   },
   mounted() {
+    // Log the Quill editor instance when the component is mounted
     console.log("this is Quill instance:", this.editor);
   },
 };
@@ -92,28 +99,12 @@ export default {
 
 <style lang="scss" scoped>
 .example {
-	width: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   .editor {
     height: 80vh;
     overflow: auto;
-  }
-  .output {
-    width: 100%;
-    height: 20rem;
-    margin: 0;
-    border: 1px solid #ccc;
-    overflow-y: auto;
-    resize: vertical;
-    &.code {
-      padding: 1rem;
-      height: 16rem;
-    }
-    &.ql-snow {
-      border-top: none;
-      height: 24rem;
-    }
   }
 }
 @media only screen and (max-width: 600px) {
@@ -122,7 +113,7 @@ export default {
   }
 }
 @media only screen and (min-width: 768px) {
-	.card-width {
+  .card-width {
     height: 75vh;
   }
 }
