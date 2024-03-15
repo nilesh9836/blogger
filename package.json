@@ -1,6 +1,6 @@
 {
   "name": "blogger",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -16,7 +16,7 @@
     "firebase": "^9.6.4",
     "firebase-admin": "^10.0.2",
     "tiptap-vuetify": "^2.24.0",
-    "vue": "^2.6.11",
+    "vue": "^3.0.0",
     "vue-material-design-icons": "^5.0.0",
     "vue-router": "^3.5.3",
     "vue-wysiwyg": "^1.7.2",
