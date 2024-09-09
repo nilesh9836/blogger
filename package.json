@@ -1,6 +1,6 @@
 {
   "name": "blogger",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -16,12 +16,21 @@
     "firebase": "^9.6.4",
     "firebase-admin": "^10.0.2",
     "tiptap-vuetify": "^2.24.0",
-    "vue": "^2.6.11",
+    "vue": "^3.0.0",
     "vue-material-design-icons": "^5.0.0",
     "vue-router": "^3.5.3",
     "vue-wysiwyg": "^1.7.2",
     "vuetify": "^2.4.0",
-    "vuex": "^3.6.2"
+    "vuex": "^3.6.2",
+    "@tiptap/starter-kit": "2.0.0-beta.164",
+    "@tiptap/vue-2": "2.0.0-beta.73",
+    "@tiptap/vue-3": "2.0.0-beta.85",
+    "@vue/cli-plugin-babel": "4.1.1",
+    "debounce": "1.2.1",
+    "dedent": "0.7.0",
+    "highlight.js": "11.3.1",
+    "lodash": "4.17.21",
+    "vue-quill-editor": "3.0.6"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
