@@ -58,16 +58,6 @@ export default {
       this.compKey++;
       this.$refs.blogReader.dialog = true;
     },
-    timeDifference(previous) {
-      // Calculate and return the time difference in a human-readable format
-      if (!previous) return "";
-      const msPerMinute = 60;
-      const msPerHour = msPerMinute * 60;
-      const msPerDay = msPerHour * 24;
-      const msPerMonth = msPerDay * 30;
-      const msPerYear = msPerDay * 365;
-      const timestamp = Math.floor(Date.now() / 1000);
-      const elapsed = timestamp - previous;
 	readData() {
      this.$refs.blogReader.compKey++;
 	this.$refs.blogReader.readerDialog = true;
